@@ -14,7 +14,7 @@ async function getPosts() {
   return posts
 }
 
-async function createPost(post: Post) {
+async function createPost(post) {
   const result = client.create(post)
   return result
 }
@@ -29,7 +29,7 @@ const Categories = async () => {
 
   return (
     <div>
-      {categories.map(category => <div>{category.name}</div>)}
+      {categories.map((category, index) => <div key={index}>{category.name}</div>)}
     </div>
   )
 
