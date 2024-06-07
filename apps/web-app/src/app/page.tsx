@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { createClient } from '@sanity/client'
 
-export const client = createClient({
+const client = createClient({
   projectId: '2ah50nc7',
   dataset: 'production',
   useCdn: true, // set to `false` to bypass the edge cache
@@ -9,17 +9,17 @@ export const client = createClient({
 })
 
 // uses GROQ to query content: https://www.sanity.io/docs/groq
-export async function getPosts() {
+async function getPosts() {
   const posts = await client.fetch('*[_type == "post"]')
   return posts
 }
 
-export async function createPost(post: Post) {
+async function createPost(post: Post) {
   const result = client.create(post)
   return result
 }
 
-export async function updateDocumentTitle(_id, title) {
+async function updateDocumentTitle(_id, title) {
   const result = client.patch(_id).set({ title })
   return result
 }
