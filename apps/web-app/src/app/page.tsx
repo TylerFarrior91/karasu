@@ -29,7 +29,7 @@ const Categories = async () => {
 
   return (
     <div>
-      {categories.map((category, index) => <div key={index}>{category.name}</div>)}
+      {categories.map((category, index) => <div className="text-3xl" key={index}>{category.name}</div>)}
     </div>
   )
 
