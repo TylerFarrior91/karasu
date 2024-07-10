@@ -1,5 +1,13 @@
 import Image from "next/image";
 
+async function getData() {
+    const query = "*[_type == 'heroImage'][0]"
+
+    const data = await client.fetch(query)
+
+    return data;
+}
+
 export default function Hero() {
     return (
         <section className="mx-auto max-w-2xl px-4 sm:pb-6 lg-max-w-7xl lg:px-8">
