@@ -5,6 +5,23 @@ import Navbar from './Navbar';
 import Hero from './Hero';
 import page from './page';
 
+import { createClient } from '@sanity/client'
+import imageUrlBuilder from '@sanity/image-url';
+
+const client = createClient({
+  projectId: '2ah50nc7',
+  dataset: 'production',
+  useCdn: true, // set to `false` to bypass the edge cache
+  apiVersion: '2023-05-03', // use current date (YYYY-MM-DD) to target the latest API version
+})
+
+const builder = imageUrlBuilder(client)
+
+export function urlFor(source: any) {
+  return builder.image(source);
+}
+
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -21,7 +38,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <Navbar />
-        <Hero />
+        <Hero client={client} urlFor={urlFor} />
         {children}
 
       </body>
